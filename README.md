@@ -40,6 +40,8 @@ is unlisted, but again, available for the public.
 * S3 storage support
 * Optimizations (especially for frontend builds)
 * Unit tests
+* Private snippet hosting
+* PWA
 * Create Dockerized version
 
 ## Self Hosting
