@@ -26,6 +26,7 @@
             i.fa.fa-info-circle
           a(
             href='javascript:;'
+            @click='handleCreateClick'
             v-tooltip='"Save"'
           )
             i.fa.fa-floppy-o
@@ -39,18 +40,14 @@
 
 <script>
 import languages from 'lib/languages';
+import Toaster from 'lib/toaster';
+import handleKey from 'lib/handleKey';
 import MonacoEditor from 'vue-monaco';
 
 export default {
   name: 'new-container',
   components: {
     'monaco-editor': MonacoEditor
-  },
-  props: {
-    id: {
-      type: String,
-      default: ''
-    }
   },
   data () {
     return {
@@ -69,35 +66,80 @@ export default {
     }
   },
   mounted () {
-    if (this.id && this.id.length) {
-      let idComponents = this.id.split('.');
-      let key = null;
-      let extension = null;
+    if (this.$route.params && this.$route.params.key) {
+      const { key, extension } = handleKey(this.$route.params.key);
+      this.language = languages[extension] || languages.plain;
 
-      if (idComponents.length > 1) {
-        extension = idComponents.pop();
-        key = idComponents.join(('.'));
-      } else {
-        key = this.id;
-      }
+      fetch(`/documents/${key}`, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        credentials: 'same-origin'
+      })
+        .then(res => res.json())
+        .then(json => {
+          if (json.ok) {
+            this.code = json.contents;
+          } else {
+            if (json.error) {
+              Toaster.create('warning', json.error, 'Whoops!');
+            }
 
-      this.language = languages[extension] || 'plain';
-
-      // fetch /api/:key
-      console.log(`Will fetch ${key}`);
+            this.$router.push('/');
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          this.$router.push('/');
+        });
     }
   },
   methods: {
     handleLanguageDropdownChange (e) {
       this.language = languages[e.currentTarget.value];
     },
-    handleNewClick () {
+    newDocument () {
       if (this.$route.params && this.$route.params.length) {
         return this.$route.push('/');
       }
 
       this.code = '';
       this.language = languages.plain;
+    },
+    handleNewClick () {
+      if (!this.code || (this.code && confirm('This will overwrite your changes. Are you sure?'))) {
+        this.newDocument();
+      }
+    },
+    handleCreateClick () {
+      let suffix = this.language === languages.plain ? '' : `.${this.language.extension}`;
+
+      return fetch('/documents', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'text/plain'
+        },
+        credentials: 'same-origin',
+        body: this.code
+      })
+        .then(res => res.json())
+        .then(json => {
+          if (json.ok) {
+            Toaster.create('success', json.key + suffix);
+          } else {
+            if (json.error) {
+              Toaster.create('danger', json.error, 'Error!');
+            } else {
+              Toaster.create('danger', 'Something bad happened.', 'Uh-oh!');
+            }
+          }
+        })
+        .catch(err => {
+          Toaster.create('danger', 'Something bad happened.', 'Uh-oh!');
+          throw new Error(err);
+        });
     }
   }
 };

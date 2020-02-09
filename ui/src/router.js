@@ -2,9 +2,11 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import 'components/Root';
+import 'components/toaster/ToastContainer';
 
 import IndexPage from 'views/IndexPage';
 import AboutPage from 'views/AboutPage';
+import ReadPage from 'views/ReadPage';
 
 Vue.use(VueRouter);
 
@@ -18,6 +20,14 @@ export default new VueRouter({
     {
       path: '/about',
       component: AboutPage
+    },
+    {
+      path: '/clone/:key',
+      component: IndexPage
+    },
+    {
+      path: '/:key',
+      component: ReadPage
     },
     {
       path: '*',

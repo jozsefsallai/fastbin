@@ -9,9 +9,13 @@
             i.fa.fa-file-o
           router-link(to='/about', v-tooltip='"About"')
             i.fa.fa-info-circle
+          router-link(:to='cloneUrl', v-tooltip='"Clone"')
+            i.fa.fa-files-o
+          a(:href='rawUrl', rel='noopener', v-tooltip='"Raw"')
+            i.fa.fa-file-code-o
     monaco-editor.editor(
       theme='vs-dark',
-      language='markdown'
+      :language='language.id'
       v-model='code'
       :options='editorOptions'
     )
@@ -19,6 +23,9 @@
 
 <script>
 import MonacoEditor from 'vue-monaco';
+import handleKey from 'lib/handleKey';
+import languages from 'lib/languages';
+import Toaster from 'lib/toaster';
 
 export default {
   name: 'new-container',
@@ -28,6 +35,8 @@ export default {
   data () {
     return {
       code: '',
+      language: languages.plain,
+      key: null,
       editorOptions: {
         fontFamily: '"Fira Code", "Consolas", "Courier New", monospace',
         fontLigatures: true,
@@ -36,8 +45,20 @@ export default {
       }
     };
   },
+  computed: {
+    cloneUrl () {
+      return `/clone/${this.$route.params.key}`;
+    },
+    rawUrl () {
+      return `/raw/${this.key}`;
+    }
+  },
   mounted () {
-    fetch('/api/about', {
+    const { key, extension } = handleKey(this.$route.params.key);
+    this.language = languages[extension] || languages.plain;
+    this.key = key;
+
+    fetch(`/documents/${key}`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -48,9 +69,18 @@ export default {
       .then(json => {
         if (json.ok) {
           this.code = json.contents;
+        } else {
+          if (json.error) {
+            Toaster.create('warning', json.error, 'Whoops!');
+          }
+
+          this.$router.push('/');
         }
       })
-      .catch(console.error);
+      .catch(err => {
+        console.error(err);
+        this.$router.push('/');
+      });
   }
 };
 </script>

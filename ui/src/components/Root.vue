@@ -1,6 +1,7 @@
 <template lang="pug">
   .app
     router-view
+    toast-container
 </template>
 
 <script>
