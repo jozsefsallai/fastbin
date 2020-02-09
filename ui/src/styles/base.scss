@@ -1,0 +1,66 @@
+@import './fonts';
+@import './tooltips';
+
+body {
+  margin: 0;
+  font: 16px / 1.6 'Fira Sans', sans-serif;
+}
+
+header {
+  display: flex;
+  padding: 15px 30px;
+  background: #323233;
+  color: #fff;
+  align-items: center;
+  justify-content: space-between;
+  height: 65px;
+  box-sizing: border-box;
+
+  .logo {
+    font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+    font-size: 24px;
+  }
+
+  .right-block {
+    display: flex;
+    align-items: center;
+
+    .language-selector {
+      margin-right: 20px;
+
+      select {
+        padding: 15px 30px;
+        color: #fff;
+        background: #464646;
+        border: 0;
+        width: 250px;
+        outline: none;
+      }
+    }
+
+    nav {
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 30px;
+        margin-right: 20px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:hover {
+          opacity: .8;
+        }
+      }
+    }
+  }
+}
+
+.editor {
+  position: fixed;
+  top: 65px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

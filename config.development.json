@@ -1,0 +1,19 @@
+{
+  "port": 3000,
+  "logging": "console",
+  "cache": {
+    "defaultTimeout": 600
+  },
+  "storageStrategy": "file",
+  "aws": {
+    "s3": {
+      "endpoint": null,
+      "key": null,
+      "secret": null,
+      "bucket": null
+    }
+  },
+  "fileStorage": {
+    "location": "./storage/"
+  }
+}

@@ -1,0 +1,5 @@
+.vscode
+node_modules
+/config.*.json
+!/config.development.json
+public/dist
