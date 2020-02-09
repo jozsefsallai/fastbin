@@ -4,7 +4,7 @@
   "cache": {
     "defaultTimeout": 600
   },
-  "storageStrategy": "file",
+  "storageStrategy": "FileStorageStrategy",
   "aws": {
     "s3": {
       "endpoint": null,

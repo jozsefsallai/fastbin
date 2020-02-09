@@ -31,7 +31,8 @@ export default {
       editorOptions: {
         fontFamily: '"Fira Code", "Consolas", "Courier New", monospace',
         fontLigatures: true,
-        lineHeight: 22
+        lineHeight: 22,
+        readOnly: true
       }
     };
   },
