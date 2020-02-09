@@ -127,7 +127,8 @@ export default {
         .then(res => res.json())
         .then(json => {
           if (json.ok) {
-            Toaster.create('success', json.key + suffix);
+            Toaster.create('success', 'File created successfully!', 'Woohoo!');
+            this.$router.push(`/${json.key}${suffix}`)
           } else {
             if (json.error) {
               Toaster.create('danger', json.error, 'Error!');
