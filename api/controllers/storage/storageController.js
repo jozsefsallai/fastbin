@@ -17,6 +17,21 @@ module.exports.get = async function (req, res) {
   });
 };
 
+module.exports.raw = async function (req, res, next) {
+  const { key } = req.params;
+
+  if (!(await storage.exists(key))) {
+    return res.status(404).json({ ok: false, error: 'File does not exist.' });
+  }
+
+  res.writeHead(200, {
+    'Content-Type': 'text/plain'
+  });
+
+  const stream = await storage.getStream(key);
+  return stream.on('error', next).pipe(res);
+};
+
 module.exports.create = async function (req, res) {
   const contents = req.body;
 

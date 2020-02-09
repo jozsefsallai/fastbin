@@ -14,6 +14,11 @@ class FileStorageStrategy {
     return await fs.readFile(path.join(STORAGE_ROOT, key), { encoding: 'utf8' });
   }
 
+  async getStream(key) {
+    const filePath = path.join(STORAGE_ROOT, key);
+    return fs.createReadStream(filePath);
+  }
+
   async exists(key) {
     return await fs.exists(path.join(STORAGE_ROOT, key));
   }
