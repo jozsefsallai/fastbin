@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const MonacoEditorPlugin = require('monaco-editor-webpack-plugin');
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
@@ -11,15 +12,36 @@ const extractSass = new MiniCSSExtractPlugin({
 
 const plugins = [
   extractSass,
-  new VueLoaderPlugin()
+  new VueLoaderPlugin(),
+  new MonacoEditorPlugin({
+    languages: [
+      '!abap',
+      '!apex',
+      '!azcli',
+      '!csp',
+      '!mips',
+      '!msdax',
+      '!pascaligo',
+      '!postiats',
+      '!powerquery',
+      '!razor',
+      '!redshift',
+      '!sb',
+      '!scheme',
+      '!solidity',
+      '!sophia',
+      '!st',
+      '!tcl'
+    ],
+    features: ['!gotoSymbol']
+  })
 ];
 
 if (process.env.NODE_ENV === 'production') {
   plugins.push(
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: '"production"' }
-    }
-    )
+    })
   );
 }
 
