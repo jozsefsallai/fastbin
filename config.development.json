@@ -13,6 +13,9 @@
       "bucket": null
     }
   },
+  "firebase": {
+    "bucket": null
+  },
   "fileStorage": {
     "location": "./storage/"
   }

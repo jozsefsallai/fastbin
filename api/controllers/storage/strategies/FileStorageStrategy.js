@@ -1,7 +1,8 @@
 const fs = require('fs-extra');
 const path = require('path');
+const config = require('../../../config');
 
-const STORAGE_ROOT = path.join(__dirname, '../../../../', 'storage')
+const STORAGE_ROOT = path.join(__dirname, '../../../../', config.fileStorage.location);
 
 class FileStorageStrategy {
   async create(params) {
@@ -11,7 +12,7 @@ class FileStorageStrategy {
   }
 
   async get(key) {
-    return await fs.readFile(path.join(STORAGE_ROOT, key), { encoding: 'utf8' });
+    return fs.readFile(path.join(STORAGE_ROOT, key), { encoding: 'utf8' });
   }
 
   async getStream(key) {
@@ -20,7 +21,7 @@ class FileStorageStrategy {
   }
 
   async exists(key) {
-    return await fs.exists(path.join(STORAGE_ROOT, key));
+    return fs.exists(path.join(STORAGE_ROOT, key));
   }
 }
 

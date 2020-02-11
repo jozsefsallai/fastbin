@@ -37,7 +37,6 @@ is unlisted, but again, available for the public.
 
 ## Todo
 
-* S3 storage support
 * Optimizations (especially for frontend builds)
 * Unit tests
 * Private snippet hosting
@@ -83,6 +82,33 @@ node index.js
 
 For production environments, I recommend that you use a tool such as PM2 to keep your
 fastbin server running 24/7.
+
+## Storage Strategies
+
+At the moment, fastbin can store snippets using three different strategies: FileStorageStrategy,
+S3StorageStrategy, FirebaseStorageStrategy. You can specify which one you want to use by
+changing the value of the `storageStrategy` property inside of `config.[environment].json`
+from `FileStorageStrategy` to any of the ones mentioned earlier.
+
+Some storage strategies require additional configuration.
+
+### FileStorageStrategy
+
+You can specify the location of the stored snippets using the `fileStorage.location` config
+option. This path is relative to the root of the project.
+
+### S3StorageStrategy
+
+You need to specify the auth credentials, as well as the endpoint and the S3 bucket name
+inside the `aws.s3` object of the configuration file.
+
+### FirebaseStorageStrategy
+
+You need to specify the name of the Firebase Storage bucket inside of the `firebase.bucket`
+property of the config. You should also include your Firebase credentials certificate in
+the root of the project and call it `firebase.json` (this step is crucial). If you don't
+have a credentials JSON file yet, you can generate one in the settings of your Firebase
+projects.
 
 ## Contribution
 
