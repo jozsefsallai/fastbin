@@ -7,7 +7,7 @@ firebase.initializeApp({
 });
 
 class Firebase {
-  constructor () {
+  constructor() {
     this.storage = firebase.storage().bucket(`${config.firebase.bucket}.appspot.com`);
   }
 
@@ -45,6 +45,6 @@ class Firebase {
         .catch(reject);
     });
   }
-};
+}
 
 module.exports = Firebase;

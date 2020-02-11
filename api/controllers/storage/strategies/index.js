@@ -11,6 +11,6 @@ module.exports = {
 
   getStorageStrategy() {
     const instance = module.exports[config.storageStrategy];
-    return new instance();
+    return new instance(); // eslint-disable-line new-cap
   }
 };

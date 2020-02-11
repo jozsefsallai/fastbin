@@ -104,11 +104,13 @@ inside the `aws.s3` object of the configuration file.
 
 ### FirebaseStorageStrategy
 
-You need to specify the name of the Firebase Storage bucket inside of the `firebase.bucket`
+You need to specify the name of the Firebase Storage bucket* inside of the `firebase.bucket`
 property of the config. You should also include your Firebase credentials certificate in
 the root of the project and call it `firebase.json` (this step is crucial). If you don't
 have a credentials JSON file yet, you can generate one in the settings of your Firebase
 projects.
+
+*Make sure you only specify the bucket's name, WITHOUT ".appspot.com".
 
 ## Contribution
 
