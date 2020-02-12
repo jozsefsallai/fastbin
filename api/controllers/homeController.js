@@ -21,7 +21,14 @@ module.exports.about = function (req, res) {
 
 module.exports.snippet = function (req, res) {
   if ([ 'phone', 'tablet' ].includes(req.device.type)) {
-    return res.redirect(`/raw/${req.params.key}`);
+    const { key } = req.params;
+    const keyComponents = key.split('.');
+
+    if (keyComponents.length > 1) {
+      keyComponents.pop();
+    }
+
+    return res.redirect(`/raw/${keyComponents.join('.')}`);
   }
 
   return res.render('index');
