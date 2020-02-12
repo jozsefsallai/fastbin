@@ -1,0 +1,17 @@
+html(lang='en')
+  head
+    title fastbin
+    meta(name='charset', content='utf-8')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, user-scalable=no')
+    script(src='/mobile/app.js', defer=true)
+    link(href='/mobile/style.css', type='text/css', rel='stylesheet')
+  body
+    #root
+      header
+        .left-block
+          .logo fastbin
+        .right-block
+          a.save-button(href='javascript:;') Save
+      .container
+        textarea.editor(spellcheck='false')
