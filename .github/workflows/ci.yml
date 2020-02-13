@@ -24,6 +24,6 @@ jobs:
     - name: Frontend linting
       run: npm run lint:ui
     - name: API testing
-      name: npm run test:api
+      run: npm run test:api
       env:
         CI: true
