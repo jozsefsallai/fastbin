@@ -22,6 +22,7 @@
     "babel-preset-env": "^1.6.1",
     "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "css-loader": "^3.4.2",
     "cuid": "^2.1.8",
@@ -44,6 +45,7 @@
     "lodash.pull": "^4.1.0",
     "lodash.remove": "^4.7.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "mocha": "^7.0.1",
     "monaco-editor": "^0.19.3",
     "monaco-editor-webpack-plugin": "^1.8.2",
     "node-cache": "^4.2.1",
@@ -53,6 +55,7 @@
     "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^1.1.3",
+    "supertest": "^4.0.2",
     "terser-webpack-plugin": "^2.3.4",
     "v-tooltip": "^2.0.2",
     "vue": "^2.6.10",
@@ -73,6 +76,7 @@
     "lint:api": "eslint api",
     "lint:api:fix": "eslint api --fix",
     "lint:ui": "eslint --ext .js --ext .vue ui",
-    "lint:ui:fix": "eslint ui --ext .js --ext .vue --fix"
+    "lint:ui:fix": "eslint ui --ext .js --ext .vue --fix",
+    "test:api": "cross-env NODE_ENV=test mocha --recursive 'api/**/*.test.js'"
   }
 }

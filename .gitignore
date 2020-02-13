@@ -2,5 +2,6 @@
 node_modules
 /config.*.json
 !/config.development.json
+!/config.test.json
 public/dist
 firebase.json

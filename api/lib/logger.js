@@ -38,6 +38,10 @@ function log(opts) {
     options = opts;
   }
 
+  if (!logger) {
+    return;
+  }
+
   logger.log({
     level: options.level || 'info',
     message: options.message

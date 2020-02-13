@@ -6,7 +6,7 @@ const env = process.env.NODE_ENV || 'development';
 const defaultConfig = require('../config.development');
 
 function deepassign(dest, src) {
-  Object.keys().forEach(key => {
+  Object.keys(src).forEach(key => {
     if (typeof dest[key] === 'object' && dest[key] !== null) {
       return deepassign(dest[key], src[key]);
     }
