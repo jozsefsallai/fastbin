@@ -4,6 +4,14 @@
   "cache": {
     "defaultTimeout": 600
   },
+  "limits": {
+    "maxBodyLength": 500000,
+    "maxPayloadSize": "10mb",
+    "rateLimiting": {
+      "window": 1,
+      "maxRequests": 1
+    }
+  },
   "storageStrategy": "FileStorageStrategy",
   "aws": {
     "s3": {

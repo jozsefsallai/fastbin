@@ -19,6 +19,11 @@ For example, if I have a JavaScript file with the key "foobar", I can append ".j
 to the end of the URL and it will highlight it as JavaScript. Appending .js to the
 raw URL will obviously not work, it expects only the key to be provided.
 
+## fastbin cli
+
+fastbin now has its own command line client. It's available for Linux, Mac OS, Windows,
+and OpenBSD and you can download it [here](https://github.com/jozsefsallai/fastbin-cli).
+
 ## Compatibility with Haste clients
 
 fastbin was designed to be compatible with most Hastebin clients. If your client
@@ -33,11 +38,12 @@ future (possibly as a custom config option).
 ## Privacy
 
 Please do NOT post any of your secret keys or passwords to a fastbin server. Every URL
-is unlisted, but again, available for the public.
+is unlisted, but again, available for the public. Snippets are NOT encrypted (i.e.
+they're plaintext). If there's popular demand for snippet encryption, I'll make sure
+to include that.
 
 ## Todo
 
-* Optimizations (especially for frontend builds)
 * Unit tests
 * Private snippet hosting
 * PWA
@@ -71,8 +77,10 @@ nano config.production.json
 npm run prod
 ```
 
-*Note: currently, production builds are very slow due to how big Monaco's codebase is.*
-*I'm looking into optimizing build times in the future.*
+Note: you need at least 1 GB of usable RAM in order to initiate a production build.
+If you have less than that, you can rely on swap memory.
+Don't worry if the build takes a long time (more than 1-2 minutes, as this is normal),
+especially if you're building for the first time.
 
 **5. Start the server**
 

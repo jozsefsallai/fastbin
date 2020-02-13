@@ -1,3 +1,4 @@
+const config = require('../../config');
 const { getStorageStrategy } = require('./strategies');
 const storage = getStorageStrategy();
 
@@ -37,6 +38,13 @@ module.exports.create = async function (req, res) {
 
   if (!contents || !contents.length) {
     return res.status(422).json({ ok: false, error: 'Contents is too short.' });
+  }
+
+  if (contents.length > config.limits.maxBodyLength) {
+    return res.status(422).json({
+      ok: false,
+      error: `Your snippet needs to be less than ${config.limits.maxBodyLength} characters long.`
+    });
   }
 
   try {
