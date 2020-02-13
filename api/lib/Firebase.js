@@ -1,13 +1,13 @@
 const firebase = require('firebase-admin');
-const serviceAccount = require('../../firebase');
 const config = require('../config');
-
-firebase.initializeApp({
-  credential: firebase.credential.cert(serviceAccount)
-});
 
 class Firebase {
   constructor() {
+    const serviceAccount = require('../../firebase');
+
+    firebase.initializeApp({
+      credential: firebase.credential.cert(serviceAccount)
+    });
     this.storage = firebase.storage().bucket(`${config.firebase.bucket}.appspot.com`);
   }
 
