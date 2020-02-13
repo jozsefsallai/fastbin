@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const MonacoEditorPlugin = require('monaco-editor-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
@@ -122,6 +123,7 @@ module.exports = {
     hints: false
   },
   optimization: {
-    minimize: process.env.NODE_ENV === 'production'
+    minimize: process.env.NODE_ENV === 'production',
+    minimizer: [ new TerserPlugin() ]
   }
 };
