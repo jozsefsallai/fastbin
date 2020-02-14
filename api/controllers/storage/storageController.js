@@ -36,6 +36,10 @@ module.exports.raw = async function (req, res, next) {
 module.exports.create = async function (req, res) {
   const contents = req.body;
 
+  if (config.auth.key && config.auth.key !== req.token) {
+    return res.status(400).json({ ok: false, error: 'Request unauthorized.' });
+  }
+
   if (!contents || !contents.length) {
     return res.status(422).json({ ok: false, error: 'Contents is too short.' });
   }

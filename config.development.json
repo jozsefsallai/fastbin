@@ -12,6 +12,9 @@
       "maxRequests": 1
     }
   },
+  "auth": {
+    "key": null
+  },
   "storageStrategy": "FileStorageStrategy",
   "aws": {
     "s3": {
