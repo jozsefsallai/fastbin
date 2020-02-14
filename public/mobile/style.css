@@ -3,6 +3,11 @@ body {
   font: 16px / 1.6 'Courier New', monospace;
 }
 
+body.dark {
+  background: #1e1e1e;
+  color: #fff;
+}
+
 header {
   display: flex;
   padding: 15px 30px;
@@ -18,7 +23,7 @@ header .logo {
   font-size: 24px;
 }
 
-.save-button {
+.save-button, .login-button {
   display: inline-block;
   color: #fff;
   text-decoration: none;
@@ -43,4 +48,15 @@ textarea {
   color: #fff;
   font-size: 16px;
   padding: 15px 30px;
+}
+
+input {
+  padding: 15px 10px;
+  border: 0;
+  font-size: 16px;
+}
+
+.login-box {
+  margin: 10px;
+  width: 500px;
 }

@@ -13,7 +13,8 @@ if (!fs.existsSync(configPath)) {
 (async function () {
   const oldConfig = require('../api/config');
 
-  oldConfig.auth.key = await uid(48);
+  const key = await uid(48);
+  oldConfig.auth.key = key;
 
   fs.writeFileSync(configPath, JSON.stringify(oldConfig, null, 2));
-})().then(() => console.log('Done!'));
+})().then(() => console.log(`Done! Here is your key: ${key}`));

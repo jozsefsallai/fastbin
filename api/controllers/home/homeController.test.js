@@ -1,4 +1,4 @@
-const agent = require('../tests/agent');
+const agent = require('../../tests/agent');
 const { expect } = require('chai');
 
 describe('homeController', function () {

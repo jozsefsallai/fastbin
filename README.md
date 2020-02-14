@@ -45,7 +45,6 @@ to include that.
 ## Todo
 
 * Unit tests
-* Private snippet hosting
 * PWA
 * Create Dockerized version
 
@@ -90,6 +89,20 @@ node index.js
 
 For production environments, I recommend that you use a tool such as PM2 to keep your
 fastbin server running 24/7.
+
+### Private Snippet Hosting
+
+If you want to password-protect your fastbin instance, you can do so by generating a
+key using the following command:
+
+```
+node bin/generateKey
+```
+
+Once you have that key, you have to use it to be able to log in and post snippets.
+If you're using the API, you have to provide the key as a bearer auth token in your
+request's auth headers. Please note that snippets made using this method are still
+going to be publicly available.
 
 ## Storage Strategies
 

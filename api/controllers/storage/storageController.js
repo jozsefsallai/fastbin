@@ -36,7 +36,7 @@ module.exports.raw = async function (req, res, next) {
 module.exports.create = async function (req, res) {
   const contents = req.body;
 
-  if (config.auth.key && config.auth.key !== req.token) {
+  if (config.auth.key && config.auth.key !== req.token && !req.session.auth) {
     return res.status(400).json({ ok: false, error: 'Request unauthorized.' });
   }
 

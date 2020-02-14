@@ -4,6 +4,10 @@
   "cache": {
     "defaultTimeout": 600
   },
+  "session": {
+    "driver": "file",
+    "secret": "ed4yAcboID91uzASsBVR"
+  },
   "limits": {
     "maxBodyLength": 500000,
     "maxPayloadSize": "10mb",

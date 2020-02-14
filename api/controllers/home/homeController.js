@@ -1,7 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const config = require('../../config');
 
 module.exports.index = function (req, res) {
+  if (config.auth.key && !req.session.auth) {
+    return res.redirect('/login');
+  }
+
   if ([ 'phone', 'tablet' ].includes(req.device.type)) {
     return res.render('mobile');
   }

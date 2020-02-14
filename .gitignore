@@ -5,3 +5,4 @@ node_modules
 !/config.test.json
 public/dist
 firebase.json
+/sessions
