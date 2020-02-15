@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(v-hotkeys='keymap')
     header
       .left-block
         .logo fastbin
@@ -16,7 +16,7 @@
           a(
             href='javascript:;'
             @click='handleNewClick'
-            v-tooltip='"New"'
+            v-tooltip='"New (ctrl+i)"'
           )
             i.fa.fa-file-o
           router-link(
@@ -27,7 +27,7 @@
           a(
             href='javascript:;'
             @click='handleCreateClick'
-            v-tooltip='"Save"'
+            v-tooltip='"Save (ctrl+s)"'
           )
             i.fa.fa-floppy-o
     monaco-editor.editor(
@@ -57,6 +57,10 @@ export default {
         fontFamily: '"Fira Code", "Consolas", "Courier New", monospace',
         fontLigatures: true,
         lineHeight: 22
+      },
+      keymap: {
+        'ctrl+s': e => e.preventDefault() | this.handleCreateClick(),
+        'ctrl+i': e => e.preventDefault() | this.handleNewClick()
       }
     };
   },

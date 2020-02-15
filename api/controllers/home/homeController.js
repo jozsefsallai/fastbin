@@ -15,7 +15,7 @@ module.exports.index = function (req, res) {
 };
 
 module.exports.about = function (req, res) {
-  const readmePath = path.join(__dirname, '..', '..', 'README.md');
+  const readmePath = path.join(__dirname, '../../..', 'README.md');
   const readme = fs.readFileSync(readmePath, { encoding: 'utf8' });
 
   return res.json({

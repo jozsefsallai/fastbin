@@ -1,17 +1,17 @@
 <template lang="pug">
-  div
+  div(v-hotkeys='keymap')
     header
       .left-block
         .logo fastbin
       .right-block
         nav
-          router-link(to='/', v-tooltip='"New"')
+          router-link(to='/', v-tooltip='"New (ctrl+i)"')
             i.fa.fa-file-o
           router-link(to='/about', v-tooltip='"About"')
             i.fa.fa-info-circle
-          router-link(:to='cloneUrl', v-tooltip='"Clone"')
+          router-link(:to='cloneUrl', v-tooltip='"Clone (ctrl+shift+c)"')
             i.fa.fa-files-o
-          a(:href='rawUrl', rel='noopener', v-tooltip='"Raw"')
+          a(:href='rawUrl', rel='noopener', v-tooltip='"Raw (ctrl+shift+r)"')
             i.fa.fa-file-code-o
     monaco-editor.editor(
       theme='vs-dark',
@@ -42,6 +42,11 @@ export default {
         fontLigatures: true,
         lineHeight: 22,
         readOnly: true
+      },
+      keymap: {
+        'ctrl+i': e => e.preventDefault() | this.$router.push('/'),
+        'ctrl+shift+c': e => e.preventDefault() | this.$router.push(this.cloneUrl),
+        'ctrl+shift+r': e => e.preventDefault() | (window.location.href = this.rawUrl)
       }
     };
   },

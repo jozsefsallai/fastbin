@@ -1,11 +1,11 @@
 <template lang="pug">
-  div
+  div(v-hotkeys='keymap')
     header
       .left-block
         .logo fastbin
       .right-block
         nav
-          router-link(to='/', v-tooltip='"New"')
+          router-link(to='/', v-tooltip='"New (ctrl+i)"')
             i.fa.fa-file-o
           router-link(to='/about', v-tooltip='"About"')
             i.fa.fa-info-circle
@@ -33,6 +33,9 @@ export default {
         fontLigatures: true,
         lineHeight: 22,
         readOnly: true
+      },
+      keymap: {
+        'ctrl+i': e => e.preventDefault() | this.$router.push('/')
       }
     };
   },
