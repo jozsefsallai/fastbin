@@ -17,4 +17,6 @@ if (!fs.existsSync(configPath)) {
   oldConfig.auth.key = key;
 
   fs.writeFileSync(configPath, JSON.stringify(oldConfig, null, 2));
-})().then(() => console.log(`Done! Here is your key: ${key}`));
+
+  return key;
+})().then(key => console.log(`Done! Here is your key: ${key}`));
