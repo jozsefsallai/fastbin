@@ -117,6 +117,11 @@ export default {
       }
     },
     handleCreateClick () {
+      if (!this.code.length) {
+        Toaster.create('warning', 'Contents is too short.', 'Whoops!');
+        return;
+      }
+
       let suffix = this.language === languages.plain ? '' : `.${this.language.extension}`;
 
       return fetch('/documents', {
