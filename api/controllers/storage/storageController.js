@@ -34,7 +34,9 @@ module.exports.raw = async function (req, res, next) {
 };
 
 module.exports.create = async function (req, res) {
-  const contents = req.body;
+  const contents = typeof req.body === 'string'
+    ? req.body
+    : req.body && Object.keys(req.body)[0];
 
   if (config.auth.key && config.auth.key !== req.token && !req.session.auth) {
     return res.status(400).json({ ok: false, error: 'Request unauthorized.' });
