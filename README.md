@@ -42,12 +42,6 @@ is unlisted, but again, available for the public. Snippets are NOT encrypted (i.
 they're plaintext). If there's popular demand for snippet encryption, I'll make sure
 to include that.
 
-## Todo
-
-* Unit tests
-* PWA
-* Create Dockerized version
-
 ## Self Hosting
 
 **1. Clone the repository**
