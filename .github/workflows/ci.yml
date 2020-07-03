@@ -17,6 +17,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Get package version
+      uses: nyaascii/package-version@master
+    - name: Print package version
+      run: echo ${{ env.PACKAGE_VERSION }}
     - name: Install dependencies
       run: npm install
     - name: API linting
