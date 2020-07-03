@@ -19,6 +19,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Get package version
       uses: nyaascii/package-version@master
+      with:
+        path: 'package.json'
     - name: Print package version
       run: echo ${{ env.PACKAGE_VERSION }}
     - name: Install dependencies
