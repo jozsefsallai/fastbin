@@ -1,3 +1,9 @@
+# THIS REPOSITORY IS NO LONGER MAINTAINED.
+
+**Please check out fastbin-rewritten:**
+
+https://github.com/jozsefsallai/fastbin-rewritten
+
 # fastbin
 
 Painless, self-hosted, modern alternative to [Hastebin](https://hastebin.com/).
